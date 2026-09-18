@@ -1,0 +1,106 @@
+/* ==========================================================================
+   LUNÉA — Design tokens
+   Todo o visual do site nasce daqui. Mudando estas variáveis, a marca inteira
+   muda de tom sem precisar mexer em componente nenhum.
+   ========================================================================== */
+
+:root {
+  /* ---------- Neutros (creme + tinta ameixa, nunca preto puro) ---------- */
+  --cream-50: #fffcf8;
+  --cream-100: #fdf6ee;
+  --cream-200: #f7ece1;
+  --cream-300: #efdfd2;
+
+  --ink-900: #1c142e;
+  --ink-800: #2a1f45;
+  --ink-700: #3a2c5c;
+  --ink-500: #5f5183;
+  /* ink-400 e ink-300 são os tons de texto auxiliar. Foram escurecidos até
+     passarem em 4.5:1 sobre o creme (WCAG AA): o lilás claro original ficava
+     bonito e ilegível, que é o erro clássico de paleta pastel. */
+  --ink-400: #675b8b;
+  --ink-300: #756a92;
+
+  /* ---------- Cores da marca ---------- */
+  --violet: #7c5cf5;
+  --violet-deep: #5f3fe0;
+  --violet-soft: #a88cff;
+  --lilac: #d9caff;
+
+  --turquoise: #2fc9c2;
+  --turquoise-soft: #8ce6e1;
+  --sky: #a9d9ff;
+
+  --rose: #ff92b4;
+  --rose-soft: #ffd2de;
+
+  --peach: #ffc29b;
+  --butter: #ffdf8a;
+
+  /* ---------- Papéis semânticos ---------- */
+  --bg: var(--cream-100);
+  --bg-raised: #ffffff;
+  --text: var(--ink-900);
+  --text-muted: var(--ink-500);
+  --text-onDark: #f6f1ff;
+  --text-onDark-muted: #bdb2dd;
+  --brand: var(--violet);
+  --line: rgba(28, 20, 46, 0.09);
+  --line-onDark: rgba(255, 255, 255, 0.14);
+
+  /* ---------- Gradientes ---------- */
+  --grad-brand: linear-gradient(118deg, var(--violet-soft) 0%, var(--violet) 46%, var(--turquoise) 100%);
+  --grad-warm: linear-gradient(120deg, var(--rose) 0%, var(--peach) 55%, var(--butter) 100%);
+  --grad-cool: linear-gradient(140deg, var(--sky) 0%, var(--turquoise-soft) 60%, var(--lilac) 100%);
+  --grad-night: linear-gradient(165deg, #2a1f45 0%, #1c142e 60%, #180f28 100%);
+  --grad-text: linear-gradient(100deg, var(--violet) 0%, var(--rose) 48%, var(--turquoise) 100%);
+
+  /* ---------- Tipografia ---------- */
+  --font-display: "Fraunces", "Georgia", "Times New Roman", serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* escala fluida — acompanha a largura da tela sem media query */
+  --fs-hero: clamp(3.2rem, 11vw, 8.5rem);
+  --fs-display: clamp(2.3rem, 5.6vw, 4.2rem);
+  --fs-h2: clamp(1.9rem, 4.2vw, 3.1rem);
+  --fs-h3: clamp(1.15rem, 2vw, 1.45rem);
+  --fs-lead: clamp(1.02rem, 1.5vw, 1.2rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-eyebrow: 0.76rem;
+
+  /* ---------- Espaçamento e layout ---------- */
+  --container: 1240px;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --section-y: clamp(5rem, 11vw, 9.5rem);
+  --gap-sm: 0.75rem;
+  --gap: 1.25rem;
+  --gap-lg: 2rem;
+
+  /* ---------- Raios ---------- */
+  --r-sm: 10px;
+  --r-md: 18px;
+  --r-lg: 28px;
+  --r-xl: 40px;
+  --r-pill: 999px;
+
+  /* ---------- Sombras (tingidas de violeta, nunca cinza) ---------- */
+  --sh-sm: 0 2px 8px rgba(43, 26, 92, 0.06);
+  --sh-md: 0 12px 30px -12px rgba(43, 26, 92, 0.18);
+  --sh-lg: 0 30px 60px -24px rgba(43, 26, 92, 0.26);
+  --sh-glow-violet: 0 18px 44px -18px rgba(124, 92, 245, 0.55);
+  --sh-glow-rose: 0 18px 44px -18px rgba(255, 146, 180, 0.5);
+
+  /* ---------- Movimento ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --t-fast: 0.18s;
+  --t-med: 0.34s;
+  --t-slow: 0.6s;
+
+  --z-canvas: 0;
+  --z-content: 1;
+  --z-nav: 50;
+  --z-overlay: 90;
+}

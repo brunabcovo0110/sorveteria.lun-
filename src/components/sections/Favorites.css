@@ -1,0 +1,262 @@
+/* ==========================================================================
+   Os queridinhos
+   ========================================================================== */
+
+.favorites {
+  background: var(--cream-100);
+}
+
+.favorites__grid {
+  display: grid;
+  grid-template-columns: 1.12fr 1fr;
+  gap: clamp(1.1rem, 2vw, 1.6rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.favorites__cell {
+  display: flex;
+  min-width: 0;
+}
+
+/* o destaque principal ocupa as duas linhas da primeira coluna */
+.favorites__cell--featured {
+  grid-row: span 2;
+}
+
+/* ---------- card ---------- */
+.treat {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+  padding: 1.4rem;
+  border-radius: var(--r-lg);
+  background: linear-gradient(150deg, var(--treat-from) 0%, var(--treat-to) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: var(--sh-md);
+  overflow: hidden;
+  transition:
+    transform var(--t-med) var(--ease-out),
+    box-shadow var(--t-med) var(--ease-out);
+}
+
+.treat::before {
+  /* véu branco no canto superior: dá o brilho de "vidro" ao card */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0) 45%
+  );
+  pointer-events: none;
+}
+
+.treat:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 34px 60px -26px var(--treat-glow);
+}
+
+.treat--featured {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: clamp(1.5rem, 2.4vw, 2.2rem);
+}
+
+/* ---------- ilustração ---------- */
+.treat__art-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 34%;
+  min-width: 0;
+}
+
+.treat--featured .treat__art-wrap {
+  flex: 1;
+  padding-block: 1rem 1.5rem;
+}
+
+.treat__halo {
+  position: absolute;
+  width: 78%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 68%);
+  transition: transform var(--t-slow) var(--ease-out);
+}
+
+.treat:hover .treat__halo {
+  transform: scale(1.16);
+}
+
+.treat__art {
+  position: relative;
+  width: 100%;
+  max-width: 130px;
+  height: auto;
+  filter: drop-shadow(0 16px 22px rgba(60, 40, 110, 0.16));
+  transition: transform var(--t-slow) var(--ease-out);
+}
+
+.treat--featured .treat__art {
+  max-width: 260px;
+}
+
+.treat:hover .treat__art {
+  transform: translateY(-6px) scale(1.04);
+}
+
+/* ---------- texto ---------- */
+.treat__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.treat__tagline {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--violet-deep);
+  opacity: 0.85;
+}
+
+.treat__name {
+  font-size: 1.4rem;
+  letter-spacing: -0.022em;
+  color: var(--ink-900);
+}
+
+.treat--featured .treat__name {
+  font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+}
+
+.treat__desc {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink-700);
+  opacity: 0.85;
+}
+
+.treat--featured .treat__desc {
+  max-width: 42ch;
+  font-size: 1rem;
+}
+
+/* ---------- preço e ação ---------- */
+.treat__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(28, 20, 46, 0.1);
+}
+
+.treat__price {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+
+.treat--featured .treat__price {
+  font-size: 1.6rem;
+}
+
+.treat__order {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--r-pill);
+  background: var(--ink-900);
+  color: var(--text-onDark);
+  font-size: 0.87rem;
+  font-weight: 600;
+  transition:
+    background-color var(--t-fast) var(--ease-out),
+    transform var(--t-fast) var(--ease-out);
+}
+
+.treat__order svg {
+  transition: transform var(--t-med) var(--ease-out);
+}
+
+.treat__order:hover {
+  background: var(--violet-deep);
+  transform: translateY(-2px);
+}
+
+.treat__order:hover svg {
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .favorites__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .favorites__cell--featured {
+    grid-row: auto;
+  }
+
+  .treat--featured {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .treat--featured .treat__art-wrap {
+    flex: 0 0 38%;
+    padding-block: 0;
+  }
+
+  .treat--featured .treat__art {
+    max-width: 170px;
+  }
+}
+
+@media (max-width: 560px) {
+  .treat,
+  .treat--featured {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .treat__art-wrap,
+  .treat--featured .treat__art-wrap {
+    flex: none;
+    padding-block: 0.5rem 1rem;
+  }
+
+  .treat__art,
+  .treat--featured .treat__art {
+    max-width: 150px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .treat:hover {
+    transform: none;
+  }
+  .treat:hover .treat__art,
+  .treat:hover .treat__halo {
+    transform: none;
+  }
+}

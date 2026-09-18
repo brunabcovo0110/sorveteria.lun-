@@ -1,0 +1,295 @@
+/* ==========================================================================
+   Localização
+   ========================================================================== */
+
+.location {
+  background: var(--cream-50);
+}
+
+.location__grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: stretch;
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.location__info,
+.location__map-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+/* ---------- cartão de informações ---------- */
+.location__card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  height: 100%;
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+  border-radius: var(--r-lg);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-md);
+}
+
+.location__status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.location__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.38rem 0.85rem;
+  border-radius: var(--r-pill);
+  background: rgba(28, 20, 46, 0.06);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink-500);
+}
+
+.location__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ink-300);
+}
+
+/* aberto: verde-turquesa com pulso suave */
+.location__status--open {
+  background: rgba(47, 201, 194, 0.14);
+  color: #17786f;
+}
+
+.location__status--open .location__status-dot {
+  background: #1fb3a8;
+  animation: status-pulse 2.6s var(--ease-soft) infinite;
+}
+
+@keyframes status-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(31, 179, 168, 0.45);
+  }
+  60% {
+    box-shadow: 0 0 0 7px rgba(31, 179, 168, 0);
+  }
+}
+
+.location__store-type {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-300);
+}
+
+/* ---------- endereço ---------- */
+.location__address {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-style: normal;
+}
+
+.location__address strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--ink-900);
+}
+
+.location__address span {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* ---------- horários ---------- */
+.location__hours {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 1.1rem 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.location__hour {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.42rem 0.55rem;
+  border-radius: var(--r-sm);
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+/* linha pontilhada ligando o dia ao horário — detalhe de menu impresso */
+.location__hour-dots {
+  flex: 1;
+  height: 1px;
+  min-width: 1rem;
+  border-bottom: 1px dotted var(--cream-300);
+}
+
+.location__hour-time {
+  font-variant-numeric: tabular-nums;
+}
+
+.location__hour--today {
+  background: rgba(124, 92, 245, 0.07);
+  color: var(--ink-900);
+  font-weight: 600;
+}
+
+.location__hour--today .location__hour-dots {
+  border-bottom-color: var(--lilac);
+}
+
+/* ---------- contato ---------- */
+.location__contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.location__contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink-700);
+  transition:
+    border-color var(--t-fast) var(--ease-out),
+    background-color var(--t-fast) var(--ease-out),
+    transform var(--t-fast) var(--ease-out);
+}
+
+.location__contact-link:hover {
+  border-color: rgba(124, 92, 245, 0.4);
+  background: rgba(124, 92, 245, 0.06);
+  transform: translateY(-2px);
+}
+
+.location__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+/* ---------- mapa ---------- */
+.location__map {
+  position: relative;
+  flex: 1;
+  min-height: 320px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-md);
+  overflow: hidden;
+}
+
+.location__map-chip {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--r-pill);
+  background: rgba(255, 252, 248, 0.92);
+  backdrop-filter: blur(8px);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-800);
+  box-shadow: var(--sh-sm);
+}
+
+.location__map-chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--grad-brand);
+}
+
+.location__map-link {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--r-pill);
+  background: var(--ink-900);
+  color: var(--text-onDark);
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: var(--sh-md);
+  transition:
+    background-color var(--t-fast) var(--ease-out),
+    transform var(--t-fast) var(--ease-out);
+}
+
+.location__map-link:hover {
+  background: var(--violet-deep);
+  transform: translateY(-2px);
+}
+
+.location__map-link svg {
+  transition: transform var(--t-med) var(--ease-out);
+}
+
+.location__map-link:hover svg {
+  transform: translateX(3px);
+}
+
+.location__map-note {
+  font-size: var(--fs-small);
+  color: var(--ink-300);
+  padding-left: 0.25rem;
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .location__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .location__map {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .location__actions .btn {
+    width: 100%;
+  }
+
+  .location__map-link {
+    left: 1rem;
+    right: 1rem;
+    justify-content: center;
+  }
+}

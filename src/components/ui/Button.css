@@ -1,0 +1,141 @@
+/* ==========================================================================
+   Button — CTAs do site
+   ========================================================================== */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 48px; /* alvo de toque confortável no celular */
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--r-pill);
+  font-family: var(--font-sans);
+  font-size: 0.94rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    transform var(--t-med) var(--ease-spring),
+    box-shadow var(--t-med) var(--ease-out),
+    background-color var(--t-med) var(--ease-out),
+    border-color var(--t-med) var(--ease-out),
+    color var(--t-med) var(--ease-out);
+}
+
+.btn--lg {
+  min-height: 56px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+}
+
+.btn--full {
+  width: 100%;
+}
+
+.btn__label,
+.btn__icon {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+}
+
+.btn__icon {
+  transition: transform var(--t-med) var(--ease-out);
+}
+
+.btn:hover .btn__icon {
+  transform: translateX(3px);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------- Primário: gradiente da marca ---------- */
+.btn--primary {
+  color: #fff;
+  box-shadow: var(--sh-glow-violet);
+}
+
+/* o gradiente vive num ::before maior que o botão e desliza no hover:
+   dá a sensação de luz passando, sem repintar o fundo */
+.btn--primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--grad-brand);
+  background-size: 180% 180%;
+  background-position: 0% 50%;
+  transition: background-position var(--t-slow) var(--ease-out);
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 50px -16px rgba(124, 92, 245, 0.68);
+}
+
+.btn--primary:hover::before {
+  background-position: 100% 50%;
+}
+
+/* ---------- Contorno: sobre fundos claros ---------- */
+.btn--outline {
+  color: var(--ink-800);
+  border: 1.5px solid var(--line);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+}
+
+.btn--outline:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124, 92, 245, 0.42);
+  background: #fff;
+  box-shadow: var(--sh-md);
+}
+
+/* ---------- Claro: sobre fundos escuros ou coloridos ---------- */
+.btn--light {
+  color: var(--ink-900);
+  background: var(--cream-50);
+  box-shadow: 0 14px 34px -14px rgba(0, 0, 0, 0.45);
+}
+
+.btn--light:hover {
+  transform: translateY(-2px);
+  background: #fff;
+  box-shadow: 0 20px 44px -14px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- Escuro: contraste alto sobre creme ---------- */
+.btn--dark {
+  color: var(--text-onDark);
+  background: var(--ink-900);
+  box-shadow: var(--sh-md);
+}
+
+.btn--dark:hover {
+  transform: translateY(-2px);
+  background: var(--ink-800);
+  box-shadow: var(--sh-lg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover,
+  .btn--primary:hover,
+  .btn--outline:hover,
+  .btn--light:hover,
+  .btn--dark:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="lunea" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#A88CFF"/>
+      <stop offset=".55" stop-color="#7C5CF5"/>
+      <stop offset="1" stop-color="#38CFC8"/>
+    </linearGradient>
+    <mask id="crescent">
+      <circle cx="29" cy="33" r="19" fill="#fff"/>
+      <circle cx="44" cy="25" r="17" fill="#000"/>
+    </mask>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="#1E1630"/>
+  <circle cx="29" cy="33" r="19" fill="url(#lunea)" mask="url(#crescent)"/>
+  <circle cx="45" cy="19" r="2.6" fill="#FFE08A"/>
+</svg>

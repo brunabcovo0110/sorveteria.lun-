@@ -1,0 +1,65 @@
+/* ==========================================================================
+   SectionHeading
+   ========================================================================== */
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 44ch;
+}
+
+.heading--center {
+  align-items: center;
+  text-align: center;
+  margin-inline: auto;
+}
+
+.heading__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  /* violet-deep em vez de violet: o tom claro não alcança 4.5:1 neste tamanho */
+  color: var(--violet-deep);
+}
+
+.heading__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--grad-brand);
+  box-shadow: 0 0 0 4px rgba(124, 92, 245, 0.14);
+}
+
+.heading__title {
+  font-size: var(--fs-h2);
+  color: var(--text);
+}
+
+.heading__lead {
+  font-size: var(--fs-lead);
+  line-height: 1.62;
+  color: var(--text-muted);
+  max-width: 46ch;
+}
+
+/* ---------- Sobre fundo escuro ---------- */
+.heading--dark .heading__title {
+  color: var(--text-onDark);
+}
+
+.heading--dark .heading__lead {
+  color: var(--text-onDark-muted);
+}
+
+.heading--dark .heading__eyebrow {
+  color: var(--turquoise-soft);
+}
+
+.heading--dark .heading__dot {
+  box-shadow: 0 0 0 4px rgba(140, 230, 225, 0.16);
+}

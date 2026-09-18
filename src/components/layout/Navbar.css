@@ -1,0 +1,209 @@
+/* ==========================================================================
+   Navbar
+   ========================================================================== */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  transition:
+    background-color var(--t-med) var(--ease-out),
+    box-shadow var(--t-med) var(--ease-out),
+    backdrop-filter var(--t-med) var(--ease-out);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding-block: 1.15rem;
+  transition: padding-block var(--t-med) var(--ease-out);
+}
+
+/* ---------- estado rolado: vidro fosco e barra mais baixa ---------- */
+.nav--scrolled {
+  background: rgba(253, 246, 238, 0.78);
+  backdrop-filter: blur(16px) saturate(1.25);
+  box-shadow: 0 1px 0 rgba(28, 20, 46, 0.06), 0 12px 30px -22px rgba(43, 26, 92, 0.3);
+}
+
+.nav--scrolled .nav__inner {
+  padding-block: 0.7rem;
+}
+
+/* ---------- logo ---------- */
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-shrink: 0;
+}
+
+.nav__wordmark {
+  font-family: var(--font-display);
+  font-size: 1.32rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  font-variation-settings: 'SOFT' 40, 'WONK' 1;
+  color: var(--ink-900);
+  transition: opacity var(--t-fast) var(--ease-out);
+}
+
+.nav__logo:hover .nav__wordmark {
+  opacity: 0.68;
+}
+
+/* ---------- links ---------- */
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nav__link {
+  position: relative;
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--r-pill);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink-700);
+  transition:
+    color var(--t-fast) var(--ease-out),
+    background-color var(--t-fast) var(--ease-out);
+}
+
+.nav__link:hover {
+  color: var(--ink-900);
+  background: rgba(124, 92, 245, 0.08);
+}
+
+/* marca da seção atual: um ponto sob o link, não um sublinhado pesado */
+.nav__link--active {
+  color: var(--violet-deep);
+}
+
+.nav__link--active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0.1rem;
+  width: 5px;
+  height: 5px;
+  margin-left: -2.5px;
+  border-radius: 50%;
+  background: var(--grad-brand);
+}
+
+/* ---------- ações ---------- */
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+/* ---------- botão hamburger ---------- */
+.nav__burger {
+  display: none;
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--line);
+  transition: background-color var(--t-fast) var(--ease-out);
+}
+
+.nav__burger span {
+  position: absolute;
+  left: 50%;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink-800);
+  transform: translateX(-50%);
+  transition: transform var(--t-med) var(--ease-out);
+}
+
+.nav__burger span:first-child {
+  top: 19px;
+}
+
+.nav__burger span:last-child {
+  top: 25px;
+}
+
+/* aberto: as duas barras viram um X */
+.nav__burger--open span:first-child {
+  transform: translateX(-50%) translateY(3px) rotate(45deg);
+}
+
+.nav__burger--open span:last-child {
+  transform: translateX(-50%) translateY(-3px) rotate(-45deg);
+}
+
+/* ---------- painel mobile ---------- */
+.nav__panel {
+  display: none;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin: 0 var(--gutter) 0;
+  padding: 1.5rem 1.4rem 1.6rem;
+  border-radius: var(--r-lg);
+  background: rgba(255, 252, 248, 0.96);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-lg);
+}
+
+.nav__panel-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav__panel-link {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.95rem 0.25rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink-900);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav__panel-link:last-child {
+  border-bottom: none;
+}
+
+.nav__panel-index {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--violet);
+}
+
+/* ---------- responsivo ---------- */
+@media (max-width: 960px) {
+  .nav__links,
+  .nav__cta {
+    display: none;
+  }
+
+  .nav__burger {
+    display: block;
+  }
+
+  .nav__panel {
+    display: flex;
+  }
+
+  .nav--scrolled {
+    background: rgba(253, 246, 238, 0.9);
+  }
+}

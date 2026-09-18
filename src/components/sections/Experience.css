@@ -1,0 +1,171 @@
+/* ==========================================================================
+   Experiência (faixa escura com canvas interativo)
+   ========================================================================== */
+
+.experience {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: min(86svh, 780px);
+  padding-block: clamp(4.5rem, 10vw, 7rem);
+  background: var(--grad-night);
+  color: var(--text-onDark);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* borda superior e inferior suaves: a faixa escura "nasce" do creme */
+.experience::before,
+.experience::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 90px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.experience::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--cream-100), rgba(253, 246, 238, 0));
+}
+
+.experience::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--cream-100), rgba(253, 246, 238, 0));
+}
+
+/* ---------- anéis decorativos (a lua, de novo bem discreta) ---------- */
+.experience__ring {
+  position: absolute;
+  width: min(60vw, 520px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  animation: experience-ring 90s linear infinite;
+  pointer-events: none;
+}
+
+.experience__ring--small {
+  width: min(38vw, 320px);
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.1);
+  animation-direction: reverse;
+  animation-duration: 64s;
+}
+
+@keyframes experience-ring {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- conteúdo ---------- */
+.experience__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.experience__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.65rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-onDark);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--turquoise-soft);
+}
+
+.experience__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--turquoise-soft);
+  box-shadow: 0 0 10px 2px rgba(140, 230, 225, 0.6);
+}
+
+.experience__title {
+  max-width: 22ch;
+  font-size: var(--fs-display);
+  color: var(--text-onDark);
+}
+
+.experience__accent {
+  background: linear-gradient(100deg, var(--lilac) 0%, var(--rose-soft) 45%, var(--turquoise-soft) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-style: italic;
+}
+
+.experience__lead {
+  max-width: 48ch;
+  font-size: var(--fs-lead);
+  line-height: 1.65;
+  color: var(--text-onDark-muted);
+}
+
+/* ---------- três palavras ---------- */
+.experience__words {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 2rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.experience__words li {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #fff;
+  opacity: 0.9;
+}
+
+.experience__words li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -1.15rem;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  margin-top: -2.5px;
+  border-radius: 50%;
+  background: var(--violet-soft);
+}
+
+/* ---------- dica de interação ---------- */
+.experience__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 560px) {
+  .experience__words {
+    gap: 0.4rem 1.4rem;
+  }
+
+  .experience__words li:not(:last-child)::after {
+    right: -0.85rem;
+  }
+}

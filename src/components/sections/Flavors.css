@@ -1,0 +1,222 @@
+/* ==========================================================================
+   Sabores
+   ========================================================================== */
+
+.flavors {
+  background: linear-gradient(180deg, var(--cream-100) 0%, var(--cream-50) 40%, var(--cream-100) 100%);
+}
+
+.flavors__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.flavors__note {
+  max-width: 34ch;
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--lilac);
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+/* ---------- grade ---------- */
+.flavors__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: clamp(1.1rem, 2.2vw, 1.75rem);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* ---------- card ---------- */
+.flavor {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: var(--r-lg);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-sm);
+  overflow: hidden;
+  transition:
+    transform var(--t-med) var(--ease-out),
+    box-shadow var(--t-med) var(--ease-out),
+    border-color var(--t-med) var(--ease-out);
+}
+
+.flavor:hover {
+  transform: translateY(-10px);
+  border-color: color-mix(in srgb, var(--flavor-base) 45%, transparent);
+  box-shadow: 0 30px 56px -26px color-mix(in srgb, var(--flavor-deep) 55%, transparent);
+}
+
+/* ---------- vitrine do card ---------- */
+.flavor__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 1.75rem 1rem 1.25rem;
+  /* o fundo usa o `tint` do sabor (uma cor pensada só para isto) e não as
+     cores da bola: é o que evita, por exemplo, que o card de chocolate fique
+     com um marrom sujo atrás da ilustração */
+  background: linear-gradient(
+    165deg,
+    #ffffff 0%,
+    var(--flavor-tint) 55%,
+    color-mix(in srgb, var(--flavor-tint) 78%, var(--flavor-base)) 100%
+  );
+  overflow: hidden;
+}
+
+/* halo colorido que cresce no hover */
+.flavor__glow {
+  position: absolute;
+  width: 62%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--flavor-base) 55%, transparent) 0%,
+    transparent 68%
+  );
+  transform: scale(0.85);
+  opacity: 0.55;
+  transition:
+    transform var(--t-slow) var(--ease-out),
+    opacity var(--t-slow) var(--ease-out);
+}
+
+.flavor:hover .flavor__glow {
+  transform: scale(1.18);
+  opacity: 0.9;
+}
+
+/* faixa de luz que atravessa a vitrine ao passar o mouse */
+.flavor__shine {
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-14deg);
+  opacity: 0;
+  transition: none;
+}
+
+.flavor:hover .flavor__shine {
+  animation: flavor-shine 0.9s var(--ease-out) forwards;
+}
+
+@keyframes flavor-shine {
+  from {
+    left: -60%;
+    opacity: 0.9;
+  }
+  to {
+    left: 115%;
+    opacity: 0;
+  }
+}
+
+.flavor__art {
+  position: relative;
+  width: 62%;
+  max-width: 170px;
+  height: auto;
+  transition: transform var(--t-slow) var(--ease-out);
+}
+
+.flavor:hover .flavor__art {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+/* ---------- selo ---------- */
+.flavor__badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.34rem 0.7rem;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(6px);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--violet-deep);
+  box-shadow: var(--sh-sm);
+}
+
+/* ---------- conteúdo ---------- */
+.flavor__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.4rem;
+  padding: 1.25rem 1.4rem 1.5rem;
+}
+
+.flavor__name {
+  font-size: 1.32rem;
+  letter-spacing: -0.02em;
+}
+
+.flavor__desc {
+  flex: 1;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.flavor__price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+}
+
+.flavor__price-value {
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+
+.flavor__price-unit {
+  font-size: 0.8rem;
+  color: var(--ink-300);
+}
+
+@media (max-width: 760px) {
+  .flavors__head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flavor:hover {
+    transform: none;
+  }
+  .flavor:hover .flavor__art,
+  .flavor:hover .flavor__glow {
+    transform: none;
+  }
+  .flavor:hover .flavor__shine {
+    animation: none;
+  }
+}

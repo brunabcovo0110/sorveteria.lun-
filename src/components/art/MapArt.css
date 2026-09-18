@@ -1,0 +1,62 @@
+/* ==========================================================================
+   MapArt
+   ========================================================================== */
+
+.map-art {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.map-art__label {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  fill: #6f9d86;
+  letter-spacing: 0.08em;
+}
+
+.map-art__street {
+  font-family: var(--font-sans);
+  font-size: 8.5px;
+  font-weight: 700;
+  fill: #a79cc2;
+  letter-spacing: 0.22em;
+}
+
+.map-art__tag-text {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  fill: #fffcf8;
+  letter-spacing: 0.04em;
+}
+
+/* pulso do marcador: onda que sai do pino, bem lenta */
+.map-art__pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: map-pulse 3.2s var(--ease-soft) infinite;
+}
+
+@keyframes map-pulse {
+  0% {
+    transform: scale(0.35);
+    opacity: 0.4;
+  }
+  70% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* o pino "assenta" quando o mapa entra na tela */
+.map-art__marker,
+.map-art__tag {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}

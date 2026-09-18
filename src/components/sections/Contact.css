@@ -1,0 +1,190 @@
+/* ==========================================================================
+   Contato / CTA final
+   ========================================================================== */
+
+.contact {
+  background: var(--cream-100);
+  padding-bottom: clamp(4rem, 8vw, 6rem);
+}
+
+.contact__panel {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: clamp(3rem, 7vw, 5.5rem) clamp(1.25rem, 4vw, 3rem);
+  border-radius: var(--r-xl);
+  background: linear-gradient(
+    115deg,
+    #8f74ff 0%,
+    #7c5cf5 26%,
+    #ff92b4 62%,
+    #ffc29b 80%,
+    #2fc9c2 100%
+  );
+  background-size: 220% 220%;
+  background-position: 0% 50%;
+  box-shadow: 0 40px 80px -40px rgba(124, 92, 245, 0.7);
+  overflow: hidden;
+  isolation: isolate;
+  animation: contact-gradient 22s var(--ease-soft) infinite alternate;
+}
+
+@keyframes contact-gradient {
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+/* véu de luz diagonal para o gradiente não ficar "chapado" */
+.contact__sheen {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(40% 50% at 20% 20%, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 60%),
+    radial-gradient(45% 55% at 80% 80%, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 60%);
+  pointer-events: none;
+}
+
+/* pontinhos de brilho: um gradient repetido, sem custo de DOM */
+.contact__sparkles {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.9) 1px, transparent 1.6px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.55) 1px, transparent 1.6px);
+  background-size: 120px 120px, 200px 200px;
+  background-position: 0 0, 60px 80px;
+  opacity: 0.5;
+  animation: sparkle-drift 30s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes sparkle-drift {
+  to {
+    background-position: 120px -120px, 260px -40px;
+  }
+}
+
+/* ---------- sorvetes nas laterais ---------- */
+.contact__art {
+  position: absolute;
+  bottom: -8%;
+  width: clamp(120px, 17vw, 210px);
+  filter: drop-shadow(0 26px 34px rgba(60, 30, 100, 0.3));
+  pointer-events: none;
+}
+
+.contact__art svg {
+  width: 100%;
+  height: auto;
+}
+
+.contact__art--left {
+  left: clamp(-1rem, 2vw, 3rem);
+}
+
+.contact__art--right {
+  right: clamp(-1rem, 2vw, 3rem);
+  bottom: -12%;
+}
+
+.contact__art-float {
+  animation: contact-float 9s var(--ease-soft) infinite alternate;
+}
+
+.contact__art-float--slow {
+  animation-duration: 11.5s;
+}
+
+@keyframes contact-float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-18px);
+  }
+}
+
+/* ---------- conteúdo ---------- */
+.contact__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  text-align: center;
+  max-width: 40ch;
+}
+
+.contact__eyebrow {
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.contact__title {
+  font-size: clamp(2.5rem, 6.5vw, 4.6rem);
+  line-height: 0.98;
+  color: #fff;
+  text-shadow: 0 10px 40px rgba(60, 30, 100, 0.25);
+}
+
+.contact__text {
+  font-size: var(--fs-lead);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.2rem;
+}
+
+.contact__note {
+  margin-top: 1.4rem;
+  font-size: var(--fs-small);
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  /* no celular os sorvetes viram enfeite discreto atrás do conteúdo */
+  .contact__art {
+    width: 110px;
+    opacity: 0.85;
+  }
+
+  .contact__art--left {
+    left: -2rem;
+    bottom: -4%;
+  }
+
+  .contact__art--right {
+    right: -2.5rem;
+    bottom: -6%;
+  }
+
+  .contact__content {
+    padding-block: 1rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .contact__art {
+    display: none;
+  }
+
+  .contact__actions {
+    width: 100%;
+    flex-direction: column;
+  }
+}
