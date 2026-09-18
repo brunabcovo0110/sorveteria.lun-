@@ -1,7 +1,7 @@
 # LUNÉA — Sorveteria artesanal
 
 Site institucional completo de uma sorveteria fictícia, criado como peça de
-portfólio: identidade visual própria, 3D em tempo real, Canvas animado e um
+portfólio: identidade visual própria, fotografia de produto, Canvas animado e um
 montador de sorvete funcional.
 
 > **Um novo jeito de saborear o verão.**
@@ -28,17 +28,27 @@ Outros comandos:
 
 ## Stack e por que cada peça está aqui
 
-| Tecnologia               | Motivo                                                                                |
-| ------------------------ | ------------------------------------------------------------------------------------- |
-| **React + TypeScript**   | componentes reutilizáveis e tipagem nos dados dos produtos                             |
-| **Vite**                 | build rápido e _code splitting_ automático do 3D                                       |
-| **three.js** (puro)      | o sorvete 3D da Hero. Sem React Three Fiber: menos dependências e controle total do loop |
-| **framer-motion**        | scroll reveal, transições de lista e paralaxe. Dispensa o GSAP                         |
-| **Canvas 2D** (sem lib)  | os campos de partículas, escritos à mão para caber no orçamento de performance          |
+| Tecnologia              | Motivo                                                                        |
+| ----------------------- | ----------------------------------------------------------------------------- |
+| **React + TypeScript**  | componentes reutilizáveis e tipagem nos dados dos produtos                     |
+| **Vite**                | build rápido e otimização de assets                                            |
+| **framer-motion**       | scroll reveal, transições de lista e paralaxe. Dispensa o GSAP                 |
+| **Canvas 2D** (sem lib) | os campos de partículas, escritos à mão para caber no orçamento de performance |
 
-Nenhuma biblioteca de ícones, de UI ou de imagens: os ícones são SVG inline e
-**todas as ilustrações de sorvete são vetores autorais** (`src/components/art`).
-Isso mantém o site leve e com uma linguagem visual coerente.
+São só duas dependências de produção (`react` e `framer-motion`). Nenhuma
+biblioteca de ícones, de UI ou de carrossel: os ícones são SVG inline
+(`src/components/ui/Icons.tsx`) e o sorvete do montador é um SVG paramétrico
+autoral, porque precisa mudar de forma conforme as escolhas do cliente.
+
+### Fotos
+
+As fotos de produto vêm do Unsplash, sob licença livre para uso comercial, e
+estão versionadas em `public/fotos/` (≈900 KB no total, já em WebP e recortadas
+no tamanho exato de exibição). A lista completa com os créditos e os critérios
+de escolha está em [`public/fotos/CREDITOS.md`](public/fotos/CREDITOS.md).
+
+Para usar as fotos da sorveteria real, basta trocar os arquivos dessa pasta
+mantendo os mesmos nomes.
 
 ---
 
@@ -60,9 +70,9 @@ src/
 │   └── useActiveSection.ts link ativo no menu
 ├── components/
 │   ├── ui/            Button, Reveal, SectionHeading, Icons
-│   ├── art/           ilustrações SVG (sorvete, produtos, mapa, logo)
+│   ├── art/           SVG autoral (sorvete do montador, mapa, logo, selo)
 │   ├── canvas/        ParticleField e GlowField
-│   ├── three/         cena 3D e seu carregamento sob demanda
+│   ├── media/         Photo (imagem otimizada) e a composição da Hero
 │   ├── layout/        Navbar e Footer
 │   └── sections/      uma pasta por seção da página (.tsx + .css juntos)
 └── styles/
@@ -103,24 +113,23 @@ arquivo precisa mudar.
 
 ## Performance
 
-O 3D e os canvas foram tratados como custo, não como enfeite.
+As imagens e os canvas foram tratados como custo, não como enfeite.
 
-- **three.js entra por `import()` dinâmico.** Ele não faz parte do bundle
-  inicial; é baixado quando o navegador fica ocioso (`requestIdleCallback`).
-  Enquanto isso, a Hero já mostra a ilustração SVG — e, se não houver WebGL,
-  ela simplesmente continua lá.
-- **Nada é desenhado fora da tela.** Cena 3D e canvas pausam via
+- **Fotos em WebP, recortadas no servidor** exatamente no tamanho em que
+  aparecem, com `width` e `height` declarados: o navegador reserva o espaço e a
+  página não "pula" enquanto elas carregam.
+- **Só a foto da Hero carrega com prioridade.** Todas as outras são `lazy`, para
+  que nada abaixo da dobra dispute banda com a primeira pintura.
+- **Nada é desenhado fora da tela.** Os canvas pausam via
   `IntersectionObserver` e quando a aba perde o foco.
 - **Partículas são sprites.** Cada cor é um degradê renderizado uma única vez;
   por quadro só acontecem cópias de imagem.
-- **Texturas são geradas em código** (waffle, ambiente de reflexo, sombra):
-  nenhum `.jpg` ou HDR é baixado.
 - **`devicePixelRatio` limitado** a 1.4–1.7, onde o ganho visual já satura.
 - **Um só `useDeviceTier`** decide, para o site inteiro, quantas partículas
-  existem, qual shader usar e se os efeitos pesados entram.
+  existem e se os efeitos pesados entram.
 
 Medição local com tudo rodando: **60 FPS estáveis, nenhum quadro acima de
-17 ms**. Bundle inicial: ~143 KB gzip (HTML + CSS + JS), com o 3D à parte.
+17 ms**.
 
 ---
 
@@ -132,10 +141,10 @@ Medição local com tudo rodando: **60 FPS estáveis, nenhum quadro acima de
 - Foco visível e consistente; as opções do montador são `input` de verdade
   (rádio e checkbox), então funcionam no teclado sem nenhuma gambiarra.
 - Alvos de toque de no mínimo 44 px.
-- Link "pular para o conteúdo", `lang="pt-BR"`, ilustrações com rótulo e
-  elementos decorativos marcados como `aria-hidden`.
+- Link "pular para o conteúdo", `lang="pt-BR"`, todas as fotos com texto
+  alternativo descritivo e elementos decorativos marcados como `aria-hidden`.
 - **`prefers-reduced-motion` é respeitado de verdade:** as animações são
-  desligadas, os canvas não são renderizados e o three.js sequer é baixado.
+  desligadas, os canvas não são renderizados e o paralaxe da Hero fica parado.
 
 ---
 

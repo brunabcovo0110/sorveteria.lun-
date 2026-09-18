@@ -18,6 +18,8 @@ export type ScoopPalette = {
 };
 
 export type Flavor = {
+  /* foto do sabor na vitrine (as dimensões evitam salto de layout) */
+  photo: { src: string; alt: string; width: number; height: number };
   id: string;
   name: string;
   description: string;
@@ -29,6 +31,12 @@ export type Flavor = {
 export const flavors: Flavor[] = [
   {
     id: 'morango',
+    photo: {
+      src: '/fotos/sabor-morango.webp',
+      alt: 'Bolas de sorvete de morango em uma taça de vidro',
+      width: 700,
+      height: 700,
+    },
     name: 'Morango',
     description: 'Leve, cremoso e feito para refrescar.',
     price: 12,
@@ -44,6 +52,12 @@ export const flavors: Flavor[] = [
   },
   {
     id: 'chocolate-belga',
+    photo: {
+      src: '/fotos/sabor-chocolate.webp',
+      alt: 'Casquinha com duas bolas de sorvete de chocolate',
+      width: 700,
+      height: 700,
+    },
     name: 'Chocolate Belga',
     description: 'Intenso e aveludado, com cacau nobre.',
     price: 14,
@@ -58,6 +72,12 @@ export const flavors: Flavor[] = [
   },
   {
     id: 'baunilha',
+    photo: {
+      src: '/fotos/sabor-baunilha.webp',
+      alt: 'Colher de sorvete tirando uma bola de creme de baunilha',
+      width: 700,
+      height: 700,
+    },
     name: 'Baunilha',
     description: 'Fava de baunilha em creme sedoso.',
     price: 12,
@@ -72,6 +92,12 @@ export const flavors: Flavor[] = [
   },
   {
     id: 'manga',
+    photo: {
+      src: '/fotos/sabor-manga.webp',
+      alt: 'Casquinha waffle com sorvete de manga',
+      width: 700,
+      height: 700,
+    },
     name: 'Manga',
     description: 'Doce na medida, com um toque tropical.',
     price: 13,
@@ -87,6 +113,12 @@ export const flavors: Flavor[] = [
   },
   {
     id: 'cookies-cream',
+    photo: {
+      src: '/fotos/sabor-cookies.webp',
+      alt: 'Casquinha de sorvete de cookies and cream com farelo de biscoito',
+      width: 700,
+      height: 700,
+    },
     name: 'Cookies & Cream',
     description: 'Creme suave com lascas crocantes de cookie.',
     price: 14,
@@ -101,6 +133,12 @@ export const flavors: Flavor[] = [
   },
   {
     id: 'limao-siciliano',
+    photo: {
+      src: '/fotos/sabor-limao.webp',
+      alt: 'Bola de sorvete de limão siciliano em um potinho amarelo',
+      width: 700,
+      height: 700,
+    },
     name: 'Limão Siciliano',
     description: 'Cítrico, vibrante e absurdamente refrescante.',
     price: 13,

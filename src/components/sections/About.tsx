@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { IceCream } from '../art/IceCream';
+import { Photo } from '../media/Photo';
 import { CircleBadge } from '../art/CircleBadge';
 import { Reveal } from '../ui/Reveal';
 import { Button } from '../ui/Button';
@@ -38,18 +38,16 @@ export function About() {
     <section className="section about" id="sobre">
       <div className="container about__inner">
         <div className="about__visual" ref={wrapper}>
-          <motion.div
-            className="about__panel"
-            style={reduce ? undefined : { y: panelY }}
-            aria-hidden="true"
-          >
-            <span className="about__panel-glow" />
-            <IceCream
-              scoops={[
-                { light: '#fff2f6', base: '#ff9ebb', deep: '#e4628c' },
-                { light: '#f3edff', base: '#c4b1ff', deep: '#9a83e8' },
-              ]}
-              className="about__panel-art"
+          <motion.div className="about__panel" style={reduce ? undefined : { y: panelY }}>
+            <Photo
+              photo={{
+                src: '/fotos/ambiente.webp',
+                alt: 'Vitrine da gelateria com bolas de gelato moldadas em formato de rosa',
+                width: 1000,
+                height: 820,
+              }}
+              className="about__panel-photo"
+              placeholder="#e8dffa"
             />
           </motion.div>
 

@@ -1,6 +1,6 @@
 import { Reveal } from '../ui/Reveal';
 import { SectionHeading } from '../ui/SectionHeading';
-import { treatArt } from '../art/treatArt';
+import { Photo } from '../media/Photo';
 import { favorites } from '../../data/favorites';
 import { buildWhatsAppLink, formatPrice, site } from '../../data/site';
 import './Favorites.css';
@@ -28,7 +28,6 @@ export function Favorites() {
 
         <div className="favorites__grid">
           {favorites.map((item, index) => {
-            const Art = treatArt[item.art];
             const featured = index === 0;
 
             return (
@@ -49,8 +48,7 @@ export function Favorites() {
                   }
                 >
                   <div className="treat__art-wrap">
-                    <span className="treat__halo" aria-hidden="true" />
-                    <Art className="treat__art" label={item.name} />
+                    <Photo photo={item.photo} className="treat__photo" placeholder={item.to} />
                   </div>
 
                   <div className="treat__body">

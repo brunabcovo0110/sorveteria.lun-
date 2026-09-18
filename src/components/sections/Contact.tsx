@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import { IceCream } from '../art/IceCream';
+import { Photo } from '../media/Photo';
 import { Button } from '../ui/Button';
 import { ArrowIcon, WhatsappIcon } from '../ui/Icons';
 import { Reveal } from '../ui/Reveal';
@@ -13,16 +13,19 @@ import './Contact.css';
    isso ganha o tratamento visual mais forte da página.
    ========================================================================== */
 
-const LEFT_SCOOPS = [
-  { light: '#fff6db', base: '#ffdf8a', deep: '#eebd4e' },
-  { light: '#fff2f6', base: '#ff9ebb', deep: '#e4628c' },
-];
+const FOTO_ESQUERDA = {
+  src: '/fotos/contato-b.webp',
+  alt: 'Casquinha com granulado colorido sobre fundo amarelo',
+  width: 480,
+  height: 600,
+};
 
-const RIGHT_SCOOPS = [
-  { light: '#e9fbfa', base: '#8ce6e1', deep: '#2fc9c2' },
-  { light: '#f3edff', base: '#c4b1ff', deep: '#9a83e8' },
-  { light: '#fff2f6', base: '#ff9ebb', deep: '#e4628c' },
-];
+const FOTO_DIREITA = {
+  src: '/fotos/contato-a.webp',
+  alt: 'Três casquinhas de sorvete de morango com frutas frescas em uma travessa',
+  width: 480,
+  height: 600,
+};
 
 export function Contact() {
   const reduce = useReducedMotion();
@@ -49,13 +52,13 @@ export function Contact() {
               flutuação contínua (CSS) — transforms separados não se anulam */}
           <motion.div className="contact__art contact__art--left" {...slide(-70, 0.1)}>
             <div className="contact__art-float">
-              <IceCream scoops={LEFT_SCOOPS} extras={['#ffffff']} />
+              <Photo photo={FOTO_ESQUERDA} className="contact__photo" placeholder="#ffdf8a" />
             </div>
           </motion.div>
 
           <motion.div className="contact__art contact__art--right" {...slide(70, 0.18)}>
             <div className="contact__art-float contact__art-float--slow">
-              <IceCream scoops={RIGHT_SCOOPS} toppings={['#5b3220']} />
+              <Photo photo={FOTO_DIREITA} className="contact__photo" placeholder="#e8e2ee" />
             </div>
           </motion.div>
 

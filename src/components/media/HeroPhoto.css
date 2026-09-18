@@ -1,0 +1,197 @@
+/* ==========================================================================
+   HeroPhoto — composição fotográfica da primeira tela
+   ========================================================================== */
+
+.hero-photo {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  margin-inline: auto;
+  aspect-ratio: 1 / 1.02;
+}
+
+/* ---------- halos de luz (gradiente puro, sem filter: blur) ---------- */
+.hero-photo__halo {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-photo__halo--violet {
+  width: 80%;
+  aspect-ratio: 1;
+  top: 2%;
+  left: -8%;
+  background: radial-gradient(
+    circle,
+    rgba(124, 92, 245, 0.32) 0%,
+    rgba(124, 92, 245, 0.1) 45%,
+    rgba(124, 92, 245, 0) 70%
+  );
+  animation: hero-photo-drift 18s var(--ease-soft) infinite alternate;
+}
+
+.hero-photo__halo--turquoise {
+  width: 62%;
+  aspect-ratio: 1;
+  bottom: 2%;
+  right: -6%;
+  background: radial-gradient(
+    circle,
+    rgba(47, 201, 194, 0.3) 0%,
+    rgba(169, 217, 255, 0.12) 46%,
+    rgba(47, 201, 194, 0) 70%
+  );
+  animation: hero-photo-drift 22s var(--ease-soft) infinite alternate-reverse;
+}
+
+@keyframes hero-photo-drift {
+  from {
+    transform: translate3d(-2%, 2%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(3%, -3%, 0) scale(1.09);
+  }
+}
+
+/* ---------- anel orbital: a lua da marca, bem discreta ---------- */
+.hero-photo__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 96%;
+  aspect-ratio: 1;
+  margin: -48% 0 0 -48%;
+  border-radius: 50%;
+  border: 1px dashed rgba(124, 92, 245, 0.2);
+  animation: hero-photo-spin 80s linear infinite;
+  pointer-events: none;
+}
+
+.hero-photo__ring::after {
+  content: '';
+  position: absolute;
+  top: 6%;
+  left: 14%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--butter);
+  box-shadow: 0 0 14px 3px rgba(255, 223, 138, 0.65);
+}
+
+@keyframes hero-photo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- foto principal, em arco ---------- */
+.hero-photo__main {
+  position: absolute;
+  top: 2%;
+  left: 13%;
+  width: 78%;
+  aspect-ratio: 9 / 10;
+  /* o arco é o que tira a foto do "retângulo de banco de imagem" */
+  border-radius: 50% 50% 26px 26px / 42% 42% 26px 26px;
+  overflow: hidden;
+  border: 6px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 40px 70px -30px rgba(60, 40, 110, 0.5),
+    0 10px 24px -14px rgba(60, 40, 110, 0.3);
+}
+
+/* ---------- foto de apoio, circular ---------- */
+.hero-photo__accent {
+  position: absolute;
+  bottom: 3%;
+  left: 0%;
+  width: 36%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid rgba(255, 255, 255, 0.92);
+  box-shadow: 0 26px 46px -22px rgba(60, 40, 110, 0.55);
+  animation: hero-photo-float 9s var(--ease-soft) infinite alternate;
+}
+
+/* a animação vive no ::before? não: o transform do paralaxe está no elemento,
+   então a flutuação fica na imagem interna para os dois não se anularem */
+.hero-photo__accent .photo {
+  animation: hero-photo-breathe 12s var(--ease-soft) infinite alternate;
+}
+
+@keyframes hero-photo-float {
+  from {
+    box-shadow: 0 26px 46px -22px rgba(60, 40, 110, 0.55);
+  }
+  to {
+    box-shadow: 0 34px 54px -22px rgba(60, 40, 110, 0.42);
+  }
+}
+
+@keyframes hero-photo-breathe {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+/* ---------- etiqueta de vidro ---------- */
+.hero-photo__chip {
+  position: absolute;
+  top: 12%;
+  right: -2%;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: var(--r-pill);
+  background: rgba(255, 252, 248, 0.86);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: var(--sh-md);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink-800);
+  white-space: nowrap;
+}
+
+.hero-photo__chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #7ac74f;
+  box-shadow: 0 0 0 3px rgba(122, 199, 79, 0.2);
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .hero-photo {
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-photo {
+    max-width: 320px;
+  }
+
+  .hero-photo__chip {
+    font-size: 0.72rem;
+    padding: 0.45rem 0.8rem;
+    right: -4%;
+  }
+
+  .hero-photo__accent {
+    width: 38%;
+    left: -6%;
+  }
+}

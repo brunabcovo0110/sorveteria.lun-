@@ -59,47 +59,47 @@
 /* ---------- vitrine do card ---------- */
 .flavor__stage {
   position: relative;
-  display: grid;
-  place-items: center;
-  padding: 1.75rem 1rem 1.25rem;
-  /* o fundo usa o `tint` do sabor (uma cor pensada só para isto) e não as
-     cores da bola: é o que evita, por exemplo, que o card de chocolate fique
-     com um marrom sujo atrás da ilustração */
-  background: linear-gradient(
-    165deg,
-    #ffffff 0%,
-    var(--flavor-tint) 55%,
-    color-mix(in srgb, var(--flavor-tint) 78%, var(--flavor-base)) 100%
-  );
+  /* proporção fixa: as seis fotos ocupam exatamente o mesmo quadro, o que
+     mantém a grade alinhada mesmo com imagens de origens diferentes */
+  aspect-ratio: 4 / 3;
+  background: var(--flavor-tint);
   overflow: hidden;
 }
 
-/* halo colorido que cresce no hover */
-.flavor__glow {
+.flavor__photo {
   position: absolute;
-  width: 62%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--flavor-base) 55%, transparent) 0%,
-    transparent 68%
-  );
-  transform: scale(0.85);
-  opacity: 0.55;
-  transition:
-    transform var(--t-slow) var(--ease-out),
-    opacity var(--t-slow) var(--ease-out);
+  inset: 0;
+  transition: transform var(--t-slow) var(--ease-out);
 }
 
-.flavor:hover .flavor__glow {
-  transform: scale(1.18);
-  opacity: 0.9;
+.flavor:hover .flavor__photo {
+  transform: scale(1.07);
+}
+
+/* véu com a cor do sabor por cima da foto: é o que costura fotos de
+   fotógrafos diferentes na mesma linguagem visual da marca */
+.flavor__stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    170deg,
+    color-mix(in srgb, var(--flavor-tint) 30%, transparent) 0%,
+    transparent 45%,
+    color-mix(in srgb, var(--flavor-deep) 22%, transparent) 100%
+  );
+  pointer-events: none;
+  transition: opacity var(--t-med) var(--ease-out);
+}
+
+.flavor:hover .flavor__stage::after {
+  opacity: 0.65;
 }
 
 /* faixa de luz que atravessa a vitrine ao passar o mouse */
 .flavor__shine {
   position: absolute;
+  z-index: 1;
   top: 0;
   left: -60%;
   width: 45%;
@@ -130,21 +130,10 @@
   }
 }
 
-.flavor__art {
-  position: relative;
-  width: 62%;
-  max-width: 170px;
-  height: auto;
-  transition: transform var(--t-slow) var(--ease-out);
-}
-
-.flavor:hover .flavor__art {
-  transform: scale(1.08) rotate(-2deg);
-}
-
 /* ---------- selo ---------- */
 .flavor__badge {
   position: absolute;
+  z-index: 2;
   top: 1rem;
   right: 1rem;
   padding: 0.34rem 0.7rem;
@@ -212,8 +201,7 @@
   .flavor:hover {
     transform: none;
   }
-  .flavor:hover .flavor__art,
-  .flavor:hover .flavor__glow {
+  .flavor:hover .flavor__photo {
     transform: none;
   }
   .flavor:hover .flavor__shine {

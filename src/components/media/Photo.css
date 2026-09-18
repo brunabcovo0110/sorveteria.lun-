@@ -1,0 +1,12 @@
+/* ==========================================================================
+   Photo
+   ========================================================================== */
+
+.photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* o atributo width/height reserva o espaço; aqui deixamos a imagem fluida */
+  max-width: 100%;
+}

@@ -32,32 +32,19 @@
   overflow: hidden;
 }
 
-.about__panel-glow {
+.about__panel-photo {
   position: absolute;
-  top: 6%;
-  left: 50%;
-  width: 78%;
-  aspect-ratio: 1;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 146, 180, 0.3) 0%, rgba(255, 146, 180, 0) 68%);
+  inset: 0;
+  /* zoom lento e contínuo: a foto "respira" sem distrair a leitura */
+  animation: about-breathe 18s var(--ease-soft) infinite alternate;
 }
 
-.about__panel-art {
-  position: relative;
-  width: 66%;
-  max-width: 260px;
-  height: auto;
-  filter: drop-shadow(0 26px 30px rgba(60, 40, 110, 0.2));
-  animation: about-float 8s var(--ease-soft) infinite alternate;
-}
-
-@keyframes about-float {
+@keyframes about-breathe {
   from {
-    transform: translateY(-2%);
+    transform: scale(1);
   }
   to {
-    transform: translateY(3%);
+    transform: scale(1.07);
   }
 }
 

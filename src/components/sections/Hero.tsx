@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Button } from '../ui/Button';
 import { ArrowIcon } from '../ui/Icons';
-import { HeroVisual } from '../three/HeroVisual';
+import { HeroPhoto } from '../media/HeroPhoto';
 import { ParticleField } from '../canvas/ParticleField';
 import type { DeviceTier } from '../../hooks/useDeviceTier';
 import { site } from '../../data/site';
@@ -114,7 +114,7 @@ export function Hero({ tier }: Props) {
                 transition: { duration: 1.1, delay: 0.25, ease: [0.22, 1, 0.36, 1] as const },
               })}
         >
-          <HeroVisual tier={tier} />
+          <HeroPhoto />
         </motion.div>
       </div>
 

@@ -65,18 +65,29 @@
   }
 }
 
-/* ---------- sorvetes nas laterais ---------- */
+/* ---------- fotos nas laterais ---------- */
 .contact__art {
   position: absolute;
-  bottom: -8%;
-  width: clamp(120px, 17vw, 210px);
-  filter: drop-shadow(0 26px 34px rgba(60, 30, 100, 0.3));
+  bottom: -6%;
+  width: clamp(120px, 15vw, 190px);
   pointer-events: none;
 }
 
-.contact__art svg {
-  width: 100%;
-  height: auto;
+/* moldura branca inclinada: transforma a foto retangular em um objeto
+   gráfico, em vez de um retângulo solto em cima do gradiente */
+.contact__photo {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--r-lg);
+  border: 6px solid rgba(255, 255, 255, 0.92);
+  box-shadow: 0 30px 50px -22px rgba(60, 30, 100, 0.55);
+}
+
+.contact__art--left .contact__photo {
+  rotate: -7deg;
+}
+
+.contact__art--right .contact__photo {
+  rotate: 7deg;
 }
 
 .contact__art--left {

@@ -1,4 +1,4 @@
-import { IceCream } from '../art/IceCream';
+import { Photo } from '../media/Photo';
 import { Reveal } from '../ui/Reveal';
 import { SectionHeading } from '../ui/SectionHeading';
 import { flavors } from '../../data/flavors';
@@ -44,13 +44,12 @@ export function Flavors() {
                   }
                 >
                   <div className="flavor__stage">
-                    <span className="flavor__glow" aria-hidden="true" />
-                    <span className="flavor__shine" aria-hidden="true" />
-                    <IceCream
-                      scoops={[flavor.palette]}
-                      className="flavor__art"
-                      label={`Sorvete de ${flavor.name}`}
+                    <Photo
+                      photo={flavor.photo}
+                      className="flavor__photo"
+                      placeholder={flavor.palette.tint}
                     />
+                    <span className="flavor__shine" aria-hidden="true" />
                     {flavor.badge ? <span className="flavor__badge">{flavor.badge}</span> : null}
                   </div>
 

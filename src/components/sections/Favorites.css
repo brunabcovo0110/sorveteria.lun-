@@ -67,48 +67,33 @@
   padding: clamp(1.5rem, 2.4vw, 2.2rem);
 }
 
-/* ---------- ilustração ---------- */
+/* ---------- foto ---------- */
 .treat__art-wrap {
   position: relative;
-  display: grid;
-  place-items: center;
-  flex: 0 0 34%;
+  flex: 0 0 38%;
   min-width: 0;
+  aspect-ratio: 1;
+  border-radius: calc(var(--r-lg) - 6px);
+  overflow: hidden;
+  box-shadow: 0 20px 36px -20px rgba(60, 40, 110, 0.5);
 }
 
+/* no card grande a foto ocupa a largura toda, como capa */
 .treat--featured .treat__art-wrap {
   flex: 1;
-  padding-block: 1rem 1.5rem;
-}
-
-.treat__halo {
-  position: absolute;
-  width: 78%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 68%);
-  transition: transform var(--t-slow) var(--ease-out);
-}
-
-.treat:hover .treat__halo {
-  transform: scale(1.16);
-}
-
-.treat__art {
-  position: relative;
   width: 100%;
-  max-width: 130px;
-  height: auto;
-  filter: drop-shadow(0 16px 22px rgba(60, 40, 110, 0.16));
+  aspect-ratio: 4 / 3;
+  margin-bottom: 1.4rem;
+}
+
+.treat__photo {
+  position: absolute;
+  inset: 0;
   transition: transform var(--t-slow) var(--ease-out);
 }
 
-.treat--featured .treat__art {
-  max-width: 260px;
-}
-
-.treat:hover .treat__art {
-  transform: translateY(-6px) scale(1.04);
+.treat:hover .treat__photo {
+  transform: scale(1.06);
 }
 
 /* ---------- texto ---------- */
@@ -221,13 +206,12 @@
     gap: 1.2rem;
   }
 
+  /* no tablet o destaque também fica lado a lado, com a foto quadrada */
   .treat--featured .treat__art-wrap {
     flex: 0 0 38%;
-    padding-block: 0;
-  }
-
-  .treat--featured .treat__art {
-    max-width: 170px;
+    width: auto;
+    aspect-ratio: 1;
+    margin-bottom: 0;
   }
 }
 
@@ -239,24 +223,19 @@
     text-align: left;
   }
 
+  /* no celular a foto vira capa em todos os cards */
   .treat__art-wrap,
   .treat--featured .treat__art-wrap {
     flex: none;
-    padding-block: 0.5rem 1rem;
-  }
-
-  .treat__art,
-  .treat--featured .treat__art {
-    max-width: 150px;
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    margin-bottom: 1.1rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .treat:hover {
-    transform: none;
-  }
-  .treat:hover .treat__art,
-  .treat:hover .treat__halo {
+  .treat:hover,
+  .treat:hover .treat__photo {
     transform: none;
   }
 }
